@@ -8,8 +8,17 @@
 給小朋友看的互動圖鑑，收錄第一世代 151 隻寶可夢，英文與繁體中文（香港譯名）對照。
 純靜態網站，不需要安裝任何東西，雙擊 `index.html` 就能玩。
 
+**線上版：<https://pokemon.wingleung001.workers.dev>**
+
 這是一個爸爸做給小女兒的專案：她喜歡寶可夢，我們就用它一起看圖、認字、讀英文名。
 **非牟利、開源分享**，歡迎下載修改，和你的小朋友一起用。
+
+## 這個專案想說什麼
+
+- **同小朋友一齊做，而不是做給他們。** 選哪隻、名字怎樣叫、字夠不夠大、要加什麼遊戲，都是她一邊看一邊說，我一邊改。她看到自己講過的意見變成畫面，那種「這是我們做的」比任何玩具都實在。
+- **興趣是最好的入口。** 她本來就喜歡寶可夢，所以英文名、中文字、屬性、身高體重，全部變成她想知道的東西，而不是要背的東西。
+- **想到就做出來。** 由「如果有個圖鑑可以讀給佢聽」到有網址可以分享，中間沒有等廠商、沒有買軟件，只有一個下午和幾句對話。
+- **教材可以自己改。** 換成恐龍、海洋生物、中文生字，改的是資料而不是程式。每個家庭都可以有一份為自己小朋友度身訂做的教材。
 
 - GitHub：<https://github.com/twl-dev/pokemon>
 - 作者：[tonytsui.io](https://www.tonytsui.io) · 部落格：[wingleung.me](https://www.wingleung.me)
@@ -89,17 +98,19 @@ node scripts/build-data.js
 const HK_OVERRIDES = { 83: '火蔥鴨' };
 ```
 
-## 部署到 Vercel
+## 部署
 
-這是一個純靜態網站，根目錄就是 `index.html`，不需要 build step：
+純靜態、沒有 build step，任何靜態主機都可以。目前線上版跑在 **Cloudflare Workers（Static Assets）**：
 
 ```bash
-cd pokemon
-npx vercel        # 預覽
-npx vercel --prod # 正式
+npx wrangler deploy
 ```
 
-或在 Vercel 網站把這個資料夾拖進去也可以。
+其他做法：
+
+- **Cloudflare Pages**：Connect to Git → 選這個 repo → Framework preset 選 `None` → Build command 留空 → Build output directory 填 `/`
+- **Vercel**：Import repo → Framework Preset 選 `Other` → Build／Output／Install 全部留空
+- **本機**：把整個資料夾拖到任何靜態伺服器即可
 
 ## 檔案結構
 
