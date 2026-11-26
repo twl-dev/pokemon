@@ -11,6 +11,10 @@
 - 做法、提示詞與踩過的坑：[MAKING-OF.md](MAKING-OF.md)
 - 授權：[MIT](LICENSE)（程式碼）；譯名資料 CC BY-NC-SA 3.0
 
+![圖鑑首頁](docs/preview-home.png)
+
+![詳情頁](docs/preview-detail.png)
+
 ## 怎麼打開
 
 - **最簡單**：在 Finder 雙擊 `index.html`（用 Safari／Chrome 開啟）。
