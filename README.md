@@ -6,6 +6,7 @@
 這是一個爸爸做給小女兒的專案：她喜歡寶可夢，我們就用它一起看圖、認字、讀英文名。
 **非牟利、開源分享**，歡迎下載修改，和你的小朋友一起用。
 
+- GitHub：<https://github.com/twl-dev/pokemon>
 - 作者：[tonytsui.io](https://www.tonytsui.io) · 部落格：[wingleung.me](https://www.wingleung.me)
 - 故事與授權：[ABOUT.md](ABOUT.md)
 - 做法、提示詞與踩過的坑：[MAKING-OF.md](MAKING-OF.md)
