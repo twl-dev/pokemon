@@ -1,5 +1,10 @@
 # 寶可夢圖鑑 · Pokédex
 
+![License: MIT](https://img.shields.io/badge/license-MIT-blue)
+![Pokémon](https://img.shields.io/badge/Pok%C3%A9mon-151-ef5350)
+![Languages](https://img.shields.io/badge/languages-English%20%2B%20%E7%B9%81%E4%B8%AD-3b6ee0)
+![No build](https://img.shields.io/badge/build-none-success)
+
 給小朋友看的互動圖鑑，收錄第一世代 151 隻寶可夢，英文與繁體中文（香港譯名）對照。
 純靜態網站，不需要安裝任何東西，雙擊 `index.html` 就能玩。
 
