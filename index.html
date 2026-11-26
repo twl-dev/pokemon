@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>寶可夢圖鑑 · Pokédex</title>
+    <meta name="description" content="151 隻第一世代寶可夢的中英雙語互動圖鑑，適合小朋友邊玩邊學。" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23fff' stroke='%23222' stroke-width='2'/%3E%3Cpath d='M1 16h30' stroke='%23222' stroke-width='2'/%3E%3Cpath d='M1 16a15 15 0 0 1 30 0z' fill='%23ef5350'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23fff' stroke='%23222' stroke-width='2'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-lang="both">
+    <a class="skip-link" href="#grid">跳到寶可夢列表</a>
+
+    <header class="topbar">
+      <div class="brand">
+        <svg class="brand__ball" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#fff" stroke="#2b2b2b" stroke-width="4" />
+          <path d="M2 32a30 30 0 0 1 60 0z" fill="#ef5350" />
+          <path d="M2 32h60" stroke="#2b2b2b" stroke-width="4" />
+          <circle cx="32" cy="32" r="11" fill="#fff" stroke="#2b2b2b" stroke-width="4" />
+        </svg>
+        <h1>
+          <span class="lang-zh">寶可夢圖鑑</span>
+          <span class="lang-en">Pokédex</span>
+        </h1>
+      </div>
+
+      <div class="topbar__right">
+        <div class="lang-switch" role="group" aria-label="顯示語言 Display language">
+          <button type="button" data-lang="both" class="is-active">中英</button>
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="zh">中文</button>
+        </div>
+
+        <button type="button" class="about-btn" id="aboutBtn">
+          <span aria-hidden="true">ⓘ</span>
+          <span class="lang-zh">關於</span><span class="lang-en">About</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="toolbar">
+        <label class="search">
+          <span class="visually-hidden">搜尋寶可夢 Search Pokémon</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4" />
+            <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+          </svg>
+          <input id="search" type="search" placeholder="搜尋：pika / 比卡 / 25" autocomplete="off" spellcheck="false" />
+        </label>
+
+        <div class="views" role="tablist" aria-label="檢視模式">
+          <button type="button" class="view-btn is-active" data-view="all" role="tab" aria-selected="true">圖鑑</button>
+          <button type="button" class="view-btn" data-view="fav" role="tab" aria-selected="false">
+            <span class="lang-zh">我的收藏</span><span class="lang-en">Favourites</span>
+            <span class="fav-count" id="favCount">0</span>
+          </button>
+          <button type="button" class="view-btn" data-view="quiz" role="tab" aria-selected="false">
+            <span class="lang-zh">這是誰？</span><span class="lang-en">Who's that?</span>
+          </button>
+        </div>
+      </section>
+
+      <div class="types" id="typeFilters" role="group" aria-label="屬性篩選 Filter by type"></div>
+
+      <p class="count" id="count" aria-live="polite"></p>
+
+      <section id="grid" class="grid" aria-label="寶可夢列表"></section>
+
+      <p id="empty" class="empty" hidden>
+        <span class="lang-zh">找不到寶可夢，換個字試試看吧！</span>
+        <span class="lang-en">No Pokémon found. Try another word!</span>
+      </p>
+
+      <section id="quiz" class="quiz" hidden aria-label="猜謎遊戲"></section>
+    </main>
+
+    <dialog id="detail" class="detail">
+      <div class="detail__panel">
+        <button type="button" class="detail__close" id="detailClose" aria-label="關閉 Close">✕</button>
+        <div class="detail__hero" id="detailHero">
+          <img id="detailArt" alt="" />
+          <span class="detail__num" id="detailNum"></span>
+        </div>
+        <div class="detail__body">
+          <div class="detail__names">
+            <h2 id="detailEn"></h2>
+            <p class="detail__zh" id="detailZh"></p>
+            <p class="detail__official" id="detailOfficial"></p>
+          </div>
+          <div class="detail__meta" id="detailMeta"></div>
+
+          <div class="desc">
+            <div class="desc__head">
+              <h3>English</h3>
+              <button type="button" class="speak" id="speakEn" aria-label="朗讀英文描述 Read English description">🔊</button>
+            </div>
+            <p id="descEn"></p>
+          </div>
+
+          <div class="desc">
+            <div class="desc__head">
+              <h3>繁體中文</h3>
+              <button type="button" class="speak" id="speakZh" aria-label="朗讀中文描述 Read Chinese description">🔊</button>
+            </div>
+            <p id="descZh"></p>
+          </div>
+
+          <div class="detail__actions">
+            <button type="button" class="action" id="playCry">🔊 <span class="lang-zh">聽叫聲</span><span class="lang-en">Cry</span></button>
+            <button type="button" class="action action--fav" id="detailFav">♡ <span class="lang-zh">收藏</span><span class="lang-en">Favourite</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail__nav">
+        <button type="button" class="detail__arrow detail__arrow--prev" id="prevBtn" aria-label="上一隻 Previous">‹</button>
+        <button type="button" class="detail__arrow detail__arrow--next" id="nextBtn" aria-label="下一隻 Next">›</button>
+      </div>
+    </dialog>
+
+    <dialog id="about" class="about" aria-labelledby="aboutTitle">
+      <div class="about__inner">
+        <button type="button" class="about__close" id="aboutClose" aria-label="關閉 Close">✕</button>
+
+        <p class="about__kicker">
+          <span class="lang-zh">關於這個圖鑑</span><span class="lang-en">About this Pokédex</span>
+        </p>
+        <h2 id="aboutTitle">
+          <span class="lang-zh">做給小女兒的寶可夢圖鑑</span>
+          <span class="lang-en">A Pokédex made for my little girl</span>
+        </h2>
+
+        <p class="lang-zh">
+          我個女好鍾意寶可夢。與其買多一件玩具，我想同佢一齊做一樣屬於我哋嘅嘢：一個可以一齊睇、一齊讀、一齊玩嘅圖鑑。
+        </p>
+        <p class="lang-en">
+          My little girl loves Pokémon. Instead of buying another toy, we built something of our own — a Pokédex we can look at, read and play with together.
+        </p>
+
+        <p class="lang-zh">
+          所以每張卡都有英文名同香港譯名並排，仲可以用語音讀出來。佢可以看圖認字，我可以陪佢讀英文；猜謎遊戲就係我哋嘅複習時間。
+        </p>
+        <p class="lang-en">
+          Every card shows the English name next to the Hong Kong Chinese name, and both can be read aloud. She learns characters from the pictures and sounds while we read the English together. The guessing game is our revision time.
+        </p>
+
+        <p class="lang-zh">
+          呢個專案唔牟利，以開源方式分享。你可以自由下載、修改，同你嘅小朋友一齊用。
+        </p>
+        <p class="lang-en">
+          This project is non-commercial and shared as open source. You are free to download it, change it, and use it with your own kids.
+        </p>
+
+        <p class="about__author">
+          <span class="lang-zh">作者：<a href="https://www.tonytsui.io" target="_blank" rel="noopener">tonytsui.io</a> · 部落格 <a href="https://www.wingleung.me" target="_blank" rel="noopener">wingleung.me</a></span>
+          <span class="lang-en">By <a href="https://www.tonytsui.io" target="_blank" rel="noopener">tonytsui.io</a> · blog <a href="https://www.wingleung.me" target="_blank" rel="noopener">wingleung.me</a></span>
+        </p>
+
+        <h3 class="about__heading">
+          <span class="lang-zh">資料來源</span><span class="lang-en">Sources</span>
+        </h3>
+        <ul class="about__sources">
+          <li>
+            <a href="https://pokeapi.co" target="_blank" rel="noopener">PokéAPI</a>
+            <span class="lang-zh">— 寶可夢名稱、圖鑑描述、屬性、身高體重、圖片與叫聲（免費開放 API，資料來自寶可夢系列遊戲）</span>
+            <span class="lang-en">— names, Pokédex entries, types, height/weight, images and cries (free open API, data from the Pokémon games)</span>
+          </li>
+          <li>
+            <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener">PokeAPI/sprites</a>
+            <span class="lang-zh">— 像素圖與官方插畫</span><span class="lang-en">— pixel sprites and official artwork</span>
+          </li>
+          <li>
+            <a href="https://github.com/PokeAPI/cries" target="_blank" rel="noopener">PokeAPI/cries</a>
+            <span class="lang-zh">— 寶可夢叫聲</span><span class="lang-en">— Pokémon cries</span>
+          </li>
+          <li>
+            <a href="https://wiki.52poke.com" target="_blank" rel="noopener">神奇寶貝百科</a>
+            <span class="lang-zh">— 香港譯名；內容依 CC BY-NC-SA 3.0 授權</span>
+            <span class="lang-en">— Hong Kong Chinese names; content licensed under CC BY-NC-SA 3.0</span>
+          </li>
+          <li>
+            <a href="https://www.jsdelivr.com" target="_blank" rel="noopener">jsDelivr</a>
+            <span class="lang-zh">— 圖片 CDN 加速</span><span class="lang-en">— image CDN</span>
+          </li>
+          <li>
+            <a href="https://www.pokemon.com" target="_blank" rel="noopener">The Pokémon Company</a>
+            <span class="lang-zh">— 寶可夢名稱與圖像版權</span><span class="lang-en">— Pokémon names and artwork copyright</span>
+          </li>
+        </ul>
+
+        <p class="about__note lang-zh">
+          授權：程式碼 MIT；譯名資料 CC BY-NC-SA 3.0（來自神奇寶貝百科）。寶可夢及相關名稱、圖像為 Nintendo／Creatures Inc.／GAME FREAK inc.／The Pokémon Company 的商標與著作權所有。本專案只作個人、非商業的親子與學習用途。
+        </p>
+        <p class="about__note lang-en">
+          Licence: code under MIT; translated names under CC BY-NC-SA 3.0 (from 神奇寶貝百科). Pokémon and related names and images are trademarks of Nintendo / Creatures Inc. / GAME FREAK inc. / The Pokémon Company. This project is for personal, non-commercial family use only.
+        </p>
+
+        <p class="about__note lang-zh">
+          想自己做一個給小朋友？完整做法、提示詞與踩過的坑都寫在
+          <a href="MAKING-OF.md" target="_blank" rel="noopener">MAKING-OF.md</a>，歡迎參考。
+        </p>
+        <p class="about__note lang-en">
+          Want to build one for your kids? The full process, prompts and lessons learned are in
+          <a href="MAKING-OF.md" target="_blank" rel="noopener">MAKING-OF.md</a>.
+        </p>
+      </div>
+    </dialog>
+
+    <script src="data/pokemon.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+MIT License
+
+Copyright (c) 2026 Tony Tsui — https://www.tonytsui.io
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+第三方資料與授權（不屬於上述 MIT 授權範圍）
+
+- 寶可夢名稱、圖鑑描述、屬性、身高體重、叫聲：PokéAPI（https://pokeapi.co），
+  資料源自寶可夢系列遊戲。
+- 像素圖與官方插畫：PokeAPI/sprites（https://github.com/PokeAPI/sprites）。
+- 香港譯名：神奇寶貝百科（https://wiki.52poke.com），
+  依「署名-非商業性使用-相同方式共享 3.0」（CC BY-NC-SA 3.0）授權使用。
+  如要再使用本專案的譯名資料，請保留出處並以相同方式共享。
+- 寶可夢及相關名稱、圖像為 Nintendo／Creatures Inc.／GAME FREAK inc.／
+  The Pokémon Company 的商標與著作權所有。
+
+本專案不牟利，只作個人、非商業的親子與學習用途。
